@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>ポモドーロしろよオラ</title>
+</head>
+<body>
+    <div id="pomodoro-app">
+        <div class="pm-TimeDisplay" data-scene-type="stay">
+            <div aria-live="polite" class="pm-ElamsedTime">
+                <span class="pm-ElamsedTime_Min">25</span><span class="pm-ElamsedTime_Separator">:</span><span class="pm-ElamsedTime_Sec">00</span>
+        </div>
+        <div class="pm-Controller">
+            <div class="pm-SettingForm">
+                <div class="pm-InputGroup">
+                    <span class="pm-InputLabel">Working</span>
+                    <input type="number" class="pm-InputTextField" value="25" data-scene-type="work">
+                    <span class="pm-InputTextUnit">min.</span>
+                </div>
+                <div class="pm-InputGroup">
+                    <span class="pm-InputLabel">Resting</span>
+                    <input type="number" class="pm-InputTextField" value="5" data-scene-type="rest">
+                    <span class="pm-InputTextUnit">min.</span>
+                </div>
+            </div>
+            <div class="pm-ActionController">
+                <button class="pm-StartButton">START</button>
+                <!-- <button aria-hidden="true" class="pm-StopButton">STOP</button>
+                <button aria-hidden="true" class="pm-ResetButton">RESET</button> -->
+            </div>
+        </div> 
+    </div>
+    <script src="./assets/app.js"></script>
+</body>
+</html>

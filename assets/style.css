@@ -1,0 +1,269 @@
+@charset "utf-8";
+body, html { all: initial; }
+#pomodoro-app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.pm-TimeDisplay {
+    width: 100%;
+    flex-basis: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row nowrap;  
+    align-items: center;
+    justify-content: center;
+    transition: background .3s ease;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    position: relative;
+}
+.pm-TimeDisplay::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
+    font-weight: bold;
+    font-style: italic;
+    background: black;
+    padding: 8px 0;
+}
+.pm-TimeDisplay[data-scene-type="stay"] {
+    background: lightgray;
+}
+.pm-TimeDisplay[data-scene-type="work"] {
+    background: gold;
+}
+.pm-TimeDisplay[data-scene-type="work"]::before {
+    content: "WORKING!!";
+    color: gold;
+
+    animation-name: slidein-line-work, fadein-text-work;
+    animation-duration: .6s, .8s;
+    animation-delay: 0s, 1.0s;
+    animation-fill-mode: both, both;
+    animation-timing-function: ease-out, ease;
+}
+.pm-TimeDisplay[data-scene-type="rest"] {
+    background: lightskyblue;
+}
+.pm-TimeDisplay[data-scene-type="rest"]::before {
+    content: "RESTING...";
+    color: gold;
+
+    animation-name: slidein-line-rest, fadein-text-rest;
+    animation-duration: .6s, .8s;
+    animation-delay: 0s, 1.0s;
+    animation-fill-mode: both, both;
+    animation-timing-function: ease-out, ease;
+}
+@keyframes slidein-line-work {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes slidein-line-rest {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes fadein-text-work {
+    0% {
+        color: rgba(255, 215, 0, 0);
+    }
+    100% {
+        color: rgba(255, 215, 0, 1);
+    }
+}
+@keyframes fadein-text-rest {
+    0% {
+        color: rgba(135, 206, 250, 0);
+    }
+    100% {
+        color: rgba(135, 206, 250, 1);
+    }
+}
+
+.pm-ElamsedTime {
+    font-size: 28vmin;
+    letter-spacing: 0.01em;
+    font-family: 'Avenir Next', sans-serif;
+    color: black;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.pm-ElamsedTime_Min {
+
+}
+
+.pm-ElamsedTime_Separator {
+    vertical-align: 0.1em;
+    margin: 0 4px;
+}
+
+.pm-ElamsedTime_Min {
+    
+}
+
+.pm-Controller {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px 0 0;
+}
+
+.pm-SettingForm {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 16px;
+}
+@media screen and (max-width: 500px) {
+    .pm-SettingForm {
+        display: flex;
+        flex-flow: column nowrap;
+    }   
+}
+
+.pm-InputGroup {
+    flex-basis: 50%;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.pm-InputLabel {
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: 700;
+    color: black;
+    font-size: 24px;
+    white-space: nowrap;
+    font-style: italic;
+}
+
+.pm-InputTextField {
+    all: initial;
+    display: inline-block;
+    width: 120px;
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: black;
+    font-style: italic;
+    padding: 4px 20px 4px 4px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+.pm-InputLabel + .pm-InputTextField {
+    margin-left: 12px;
+}
+@media screen and (max-width: 500px) {
+    .pm-InputTextField {
+        margin-top: 12px;
+        padding: 4px 28px 2px 4px;
+    }
+}
+
+.pm-InputTextUnit {
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    font-style: italic;
+}
+.pm-InputTextField + .pm-InputTextUnit {
+    margin-left: calc(-3em + 8px);
+}
+@media screen and (max-width: 500px) {
+    .pm-InputTextUnit {
+        margin-top: 12px;
+    }
+    .pm-InputTextField + .pm-InputTextUnit {
+        margin-left: calc(-3em + 12px);
+    }
+}
+
+.pm-ActionController {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.pm-SettingForm + .pm-ActionController {
+    margin-top: 20px;
+}
+
+.pm-StartButton {
+    all: initial;
+    width: 240px;
+    height: 72px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 40px;
+    font-style: italic;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 2px black;
+    letter-spacing: 0.02em;
+    transition: background .1s ease,
+                box-shadow .1s ease,
+                letter-spacing .2s ease-out;
+}
+.pm-StartButton:enabled:hover {
+    cursor: pointer;
+    background: gold;
+    box-shadow: 0 0 0 6px black;
+    letter-spacing: 0.08em;
+    transition: background .4s ease,
+                box-shadow .3s ease-out,
+                letter-spacing .5s ease-out;
+}
+.pm-StartButton:disabled {
+    background: gold;
+    box-shadow: 0 0 0 6px black;
+    letter-spacing: 0.08em;
+    animation-name: startButton-effect-sec-1, startButton-effect-sec-2-1, startButton-effect-sec-2-2;
+    animation-duration: .4s, .6s, .4s;
+    animation-delay: 0s, .5s, .6s;
+    animation-fill-mode: both, forwards, forwards;
+    animation-timing-function: ease, ease-out, ease;
+}
+@keyframes startButton-effect-sec-1 {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+@keyframes startButton-effect-sec-2-1 {
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(300px);
+    }
+}
+@keyframes startButton-effect-sec-2-2 {
+    0% {
+        margin-bottom: 20px;
+    }
+    100% {
+        margin-bottom: -72px;
+    }
+}
